@@ -8,7 +8,7 @@ import Search from './Search';
 import PhotoList from './PhotoList';
 import apiKey from './config.js'
 
- class App extends Component   {
+class App extends Component   {
 
   constructor() {
     super();
@@ -18,23 +18,22 @@ import apiKey from './config.js'
     }
   };
 
-//Fetch Photos from flicker
-performFetch = () => {
-  axios.get(apiKey)
-  .then(res => { 
-    this.setState({
-      photos: res.data
+  //Fetch Photos from flicker
+  performFetch = () => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${apiKey}&per_page=24&format=json&nojsoncallback=1`)
+    .then(res => { 
+      this.setState({
+        photos: res.photos.photo
+      })
     })
-  })
-  .catch(err => {
-    console.log('Error fetching and parsing data', err);
-   })
-}
-
-
-
+    .catch(err => {
+      console.log('Error fetching and parsing data', err);
+    })
+  }
+  
 
   render() {
+    console.log(this.state.photos)
    return (
     <BrowserRouter>
       <div className="container">
