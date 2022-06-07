@@ -12,15 +12,16 @@ class App extends Component  {
 
   state = {
     photos: [],
-    // loading: true
+    loading: true
   }
 
-//Fetch Photos from flicker
+  //Get Photos from flicker
  performFetch = (query = 'racecars') => {
     axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=1&per_page=24&format=json&nojsoncallback=1`)
     .then(res => { 
       this.setState({
-        photos: res.data.photos.photo
+        photos: res.data.photos.photo,
+        loading: false
       })
     })
     .catch(err => {
@@ -38,11 +39,16 @@ class App extends Component  {
       <div className="container">
       <Search onSearch={this.performFetch}/>
       <Nav />
-      <PhotoList data={this.state.photos}/>
+      {
+        (this.state.loading)
+        ? <p>Loading...</p>
+        : <PhotoList data={this.state.photos}/>
+      }
+
       <Routes>
-        <Route path='/cats' element={PhotoList} />
-        <Route path='/cats' element={PhotoList} />
-        <Route path='/cats' element={PhotoList} />
+        <Route path='/travel' element={<Search/>} />
+        <Route path='/flowers' element={Search} />
+        <Route path='/wildlife' element={Search} />
         </Routes>
       </div>
     </BrowserRouter>
