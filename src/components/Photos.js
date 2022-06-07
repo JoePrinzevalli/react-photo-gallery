@@ -1,11 +1,10 @@
 import React from "react";
 
-const Photos = () => {
+const Photos = (props) => {
     return (
         <ul>
             <li>
-                <img src='' alt='' />
-                <p>Photos will go here</p>
+                <img src= {props.url} alt={props.title}/>
             </li>
         </ul>
     )
