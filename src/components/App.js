@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import axios from 'axios';
 
 // App Components 
@@ -10,13 +10,11 @@ import apiKey from './config.js'
 
 class App extends Component   {
 
-  constructor() {
-    super();
-    this.state = {
+
+  state = {
       photos: [],
       // loading: true
     }
-  };
 
   //Fetch Photos from flicker
   performFetch = () => {
@@ -37,14 +35,11 @@ class App extends Component   {
    return (
     <BrowserRouter>
       <div className="container">
-        <Search />
-        <Nav />
-
-        <div className="photo-container">
-          <h2>Dynamically insert results here</h2>
-            <PhotoList data={this.state.photos}/>
-        </div>
-        
+      <Search />
+      <Routes>
+        <Route path='/' element={<Nav />} />
+        <Route path='/' element={<PhotoList data={this.state.photos}/>} />
+        </Routes>
       </div>
     </BrowserRouter>
    )

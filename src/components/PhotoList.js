@@ -6,7 +6,9 @@ const PhotoList = props => {
     console.log(props);
     
     return (
-    <p>Photos Dynamically inserteed here</p>
+        <div className="photo-container">
+            <h2>Results</h2>
+        </div>
     )
 }
 
