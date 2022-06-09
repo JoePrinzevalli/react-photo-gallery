@@ -6,6 +6,8 @@ import axios from 'axios';
 import PhotoList from './PhotoList';
 import PageNotFound from './PageNotFound';
 import apiKey from './config.js'
+import Header from './Header';
+import Home from './Home';
 
 class App extends Component  {
 
@@ -21,7 +23,7 @@ class App extends Component  {
     .then(res => { 
       this.setState({
         photos: res.data.photos.photo,
-        loading: false,
+        loading: false
       })
     })
     .catch(err => {
@@ -33,33 +35,21 @@ class App extends Component  {
       this.performFetch()
   };
 
-  // changeQuery = () => {
-  //   this.setState({
-  //     query: this.params.query
-  //   })
-  // }
-
-
   render() {
 
    return (
     <BrowserRouter>
       <div className="container">
+      <Header search={this.performFetch} />
       <Routes>
-      {/* route for whatever value is in search bar*/}
-        <Route path='/' element={ 
+        <Route path='/' element={<Home data={this.state.photos} search={this.performFetch} />} />
+        {/* had trouble showing stock photos on my home page, is this way ok??? */}
+
+        <Route path='/:query' element={ 
         (this.state.loading)
         ? <h1>Loading...</h1>
-        : <PhotoList data={this.state.photos} search={this.performFetch}/>
-      }/> 
-
-        {/* routes for 3 nav buttons */}
-    {/* 
-        <Route path='/travel' element={<PhotoList onClick={this.setQuery}/>} />
-        <Route path='/flowers' element={<PhotoList  onClick={this.setQuery}/>} />
-        <Route path='/wildlife' element={<PhotoList  onClick={this.setQuery}/>} /> 
-        */}
-
+        : <PhotoList data={this.state.photos} search={this.performFetch} />
+      }/>
         <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>

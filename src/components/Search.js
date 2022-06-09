@@ -8,6 +8,7 @@ class Search extends Component {
       }
       
       
+      
 
     //next two functions help reset the text value in seearch input and grab input value to set next query  
     onSearchChange = e => {
@@ -15,9 +16,13 @@ class Search extends Component {
     }
     
     handleSearch = e => {
+        // console.log(this.props.match.params.query);
+        console.log(this.query.value);
+
         e.preventDefault()
         this.props.search(this.query.value)
         e.currentTarget.reset();
+        
         // for browser history section
             // let searchPic = this.search.value
             // let path = `search/${searchPic}`;
