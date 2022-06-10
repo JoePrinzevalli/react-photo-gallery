@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+// import { useNavigate, useParams } from "react-router-dom";
 
 
 class Search extends Component {
@@ -6,9 +7,6 @@ class Search extends Component {
     state = {
         searchText: ''
       }
-      
-      
-      
 
     //next two functions help reset the text value in seearch input and grab input value to set next query  
     onSearchChange = e => {
@@ -16,8 +14,11 @@ class Search extends Component {
     }
     
     handleSearch = e => {
-        // console.log(this.props.match.params.query);
-        console.log(this.query.value);
+
+        // console.log(this.query.value);
+        // let params = useParams()
+        // let navigate = useNavigate()
+        // navigate(`/${parmas}`)
 
         e.preventDefault()
         this.props.search(this.query.value)
@@ -29,7 +30,9 @@ class Search extends Component {
             // this.props.history.push(path);
     }
 
+    
     render() {
+        
         return (
             <form className="search-form" onSubmit={this.handleSearch}>
                 <input

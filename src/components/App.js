@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
 import axios from 'axios';
 
 // App Components 
@@ -18,7 +18,7 @@ class App extends Component  {
   }
 
   //Get Photos from flicker
- performFetch = (query = this.state.query) => {
+ performFetch = (query) => {
     axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=1&per_page=24&format=json&nojsoncallback=1`)
     .then(res => { 
       this.setState({
@@ -31,26 +31,25 @@ class App extends Component  {
     })
   }
 
+//  handleQuery = () => {
+//   let query = useParams()
+//   console.log(query)
+//  }
+
   componentDidMount() {
       this.performFetch()
   };
 
-  render() {
 
+  render() {
    return (
     <BrowserRouter>
       <div className="container">
-      <Header search={this.performFetch} />
-      <Routes>
-        <Route path='/' element={<Home data={this.state.photos} search={this.performFetch} />} />
-        {/* had trouble showing stock photos on my home page, is this way ok??? */}
-
-        <Route path='/:query' element={ 
-        (this.state.loading)
-        ? <h1>Loading...</h1>
-        : <PhotoList data={this.state.photos} search={this.performFetch} />
-      }/>
-        <Route path="*" element={<PageNotFound />} />
+        <Header search={this.performFetch} />
+        <Routes>
+          <Route path='/' element={<Home  search={this.performFetch} />} />
+          <Route path='/:query' element={<PhotoList loading={this.state.loading} data={this.state.photos} /> } />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -1,37 +1,38 @@
 import React from 'react';
 import Photos from './Photos'
 import NoResults from './NoResults'
+import { useParams } from 'react-router-dom';
 
-
-
-
-const PhotoList = (props, {match}) => {
+const PhotoList = (props) => {
 
     //Returns fetch data from App.js
     let results = props.data
-    let photos;
-    let title;
+    let loading = props.loading;
 
-    // let topic = match.query.topic;
-    //     console.log(topic);
-    
-    console.log(props.search);
-    
+    //For dynamic gallery heading
+    let title;
+    let url = useParams().query //check and make sure this works for no search results
+    console.log(url);
+
+    // to help set url paths
+    const{query} = useParams()
 
     //maps over object returend from fetch function and creates url to display image
-    if(results.length > 0) {
-      title = 'Get title dynaimcially here with query'
+    let photos;
+    if(results.length > 0 ) {
+      title = `${url} Gallery`
       photos = results.map(photo => <Photos url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} key={photo.id} title={photo.title} /> )
     } else {
       photos = <NoResults />
     }
+
     return (
       <div className="photo-container">
       <h2>{title}</h2>
-      {/* <p>{query}</p> */}
-            <ul>
-              {photos}
-            </ul>
+            {(loading)
+            ?<h2>Loading...</h2>
+            :<ul> {photos}</ul>
+            }
       </div>
     ) 
 }
