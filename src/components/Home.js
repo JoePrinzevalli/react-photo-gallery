@@ -1,11 +1,9 @@
 import React from "react";
-// import PhotoList from "./PhotoList";
 
 
-const Home = (props) => {
+const Home = () => {
     return (
-        // <PhotoList data={props.data}/>
-        <h2>Look up some pics!</h2>
+        <h2>Click the links above or look up your own pictures!</h2>
     )
 };
 

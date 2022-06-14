@@ -1,11 +1,7 @@
 import React from "react";
 import {NavLink} from 'react-router-dom'
-// import Photos from './Photos'
 
 const Nav = props => {
-
-    console.log(props.query);
-    // console.log(props.search);
 
     const handleSearch = e => {
         this.props.navigate(`/${this.query.value}`);
@@ -19,12 +15,13 @@ const Nav = props => {
             // this.props.history.push(path);
     };
 
+
     return (
     <nav className="main-nav">
         <ul>
-            <li><NavLink onClick={handleSearch} to="/travel">Travel</NavLink></li>
-            <li><NavLink onClick={handleSearch} to="/flowers">Flowers</NavLink></li>
-            <li><NavLink to="/wildlife">Wildlife</NavLink></li>
+            <li><NavLink onClick={handleSearch} to="/animals">Animals</NavLink></li>
+            <li><NavLink onClick={handleSearch} to="/superman">Superman</NavLink></li>
+            <li><NavLink onClick={handleSearch} to="/space">Space</NavLink></li>
       </ul>
     </nav>
     )

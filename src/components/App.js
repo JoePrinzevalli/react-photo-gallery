@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, withRouter} from 'react-router-dom'
 import axios from 'axios';
 import PropTypes from "prop-types";
 
+
 // App Components 
 import PhotoList from './PhotoList';
 import PageNotFound from './PageNotFound';
@@ -12,11 +13,13 @@ import Home from './Home';
 
 class App extends Component  {
 
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
+  
+
+  // static propTypes = {
+  //   match: PropTypes.object.isRequired,
+  //   location: PropTypes.object.isRequired,
+  //   history: PropTypes.object.isRequired
+  // };
 
   state = {
     photos: [],
@@ -40,7 +43,7 @@ class App extends Component  {
   }
 
   componentDidMount() {
-      this.performFetch()
+    this.performFetch(window.location.pathname)
   };
   
   
