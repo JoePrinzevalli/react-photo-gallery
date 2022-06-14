@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, withRouter} from 'react-router-dom'
 import axios from 'axios';
+import PropTypes from "prop-types";
 
 // App Components 
 import PhotoList from './PhotoList';
@@ -10,6 +11,12 @@ import Header from './Header';
 import Home from './Home';
 
 class App extends Component  {
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
 
   state = {
     photos: [],
@@ -23,7 +30,8 @@ class App extends Component  {
     .then(res => { 
       this.setState({
         photos: res.data.photos.photo,
-        loading: false
+        loading: false,
+        query: query
       })
     })
     .catch(err => {
@@ -31,24 +39,20 @@ class App extends Component  {
     })
   }
 
-//  handleQuery = () => {
-//   let query = useParams()
-//   console.log(query)
-//  }
-
   componentDidMount() {
       this.performFetch()
   };
-
+  
+  
 
   render() {
    return (
     <BrowserRouter>
       <div className="container">
-        <Header search={this.performFetch} />
+        <Header search={this.performFetch} data={this.state.photos} query={this.state.query} />
         <Routes>
           <Route path='/' element={<Home  search={this.performFetch} />} />
-          <Route path='/:query' element={<PhotoList loading={this.state.loading} data={this.state.photos} /> } />
+          <Route path='/:query' element={<PhotoList loading={this.state.loading} data={this.state.photos} search={this.performFetch}/> } />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
@@ -56,6 +60,5 @@ class App extends Component  {
    )
   }
 };
-
 
 export default App;

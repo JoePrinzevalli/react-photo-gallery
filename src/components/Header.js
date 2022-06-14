@@ -7,7 +7,7 @@ const Header = (props) => {
     return (
         <div>
             <Search search={props.search}/>
-            <Nav />
+            <Nav query={props.query} search={props.search}/>
         </div>
     )
 }

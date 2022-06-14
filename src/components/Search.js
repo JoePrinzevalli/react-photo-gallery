@@ -1,6 +1,9 @@
 import React, {Component} from "react";
-// import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+function withNavigate(Component) {
+    return (props) => <Component {...props} navigate={useNavigate()} />;
+  }
 
 class Search extends Component {
 
@@ -14,23 +17,17 @@ class Search extends Component {
     }
     
     handleSearch = e => {
-
-        // console.log(this.query.value);
-        // let params = useParams()
-        // let navigate = useNavigate()
-        // navigate(`/${parmas}`)
-
+        this.props.navigate(`/${this.query.value}`);
         e.preventDefault()
         this.props.search(this.query.value)
         e.currentTarget.reset();
         
         // for browser history section
             // let searchPic = this.search.value
-            // let path = `search/${searchPic}`;
+            // let path = `${searchPic}`;
             // this.props.history.push(path);
-    }
+    };
 
-    
     render() {
         
         return (
@@ -53,5 +50,4 @@ class Search extends Component {
     }
 };
 
-
-export default Search
+export default withNavigate(Search);
