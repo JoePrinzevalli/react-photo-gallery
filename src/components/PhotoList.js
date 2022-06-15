@@ -3,7 +3,7 @@ import Photos from './Photos'
 import NoResults from './NoResults'
 import { useParams } from 'react-router-dom';
 
-const PhotoList = (props, {match}) => {
+const PhotoList = props => {
 
     //Returns fetch data from App.js
     let results = props.data
@@ -33,7 +33,7 @@ const PhotoList = (props, {match}) => {
     
       </div>
     ) 
-}
+};
 
 
 export default PhotoList;

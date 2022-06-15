@@ -8,10 +8,8 @@ const PageNotFound = () => {
             <img src={Error} alt='thanos' className='error-pic'></img>
             <h4>Oops! Looks like you were snapped to the wrong page...</h4>
             <a className='error-button' href='/'>Back home</a>
-            {/* remember to style this */}
         </div>
     )
 };
-
 
 export default PageNotFound;

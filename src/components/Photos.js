@@ -1,6 +1,6 @@
 import React from "react";
 
-const Photos = (props) => {
+const Photos = props => {
     return (
         <ul>
             <li>
@@ -8,7 +8,6 @@ const Photos = (props) => {
             </li>
         </ul>
     )
-}
-
+};
 
 export default Photos;

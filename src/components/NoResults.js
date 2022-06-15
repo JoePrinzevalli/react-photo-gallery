@@ -7,7 +7,6 @@ const NoResults = () => {
             <p>You search did not return any results. Please try again.</p>
         </li>
     )
-}
+};
 
-
-export default NoResults
+export default NoResults;

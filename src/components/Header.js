@@ -10,7 +10,6 @@ const Header = (props) => {
             <Nav query={props.query} search={props.search}/>
         </div>
     )
-}
-
+};
 
 export default Header;

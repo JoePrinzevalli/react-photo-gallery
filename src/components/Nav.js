@@ -1,20 +1,14 @@
 import React from "react";
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const Nav = props => {
+const Nav = () => {
 
     const handleSearch = e => {
         this.props.navigate(`/${this.query.value}`);
         e.preventDefault()
         this.props.search(this.query.value)
         e.currentTarget.reset();
-        
-        // for browser history section
-            // let searchPic = this.search.value
-            // let path = `search/${searchPic}`;
-            // this.props.history.push(path);
     };
-
 
     return (
     <nav className="main-nav">
@@ -25,7 +19,6 @@ const Nav = props => {
       </ul>
     </nav>
     )
-}
-
+};
 
 export default Nav;

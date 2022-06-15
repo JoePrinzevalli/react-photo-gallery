@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 function withNavigate(Component) {
     return (props) => <Component {...props} navigate={useNavigate()} />;
@@ -21,15 +21,9 @@ class Search extends Component {
         e.preventDefault()
         this.props.search(this.query.value)
         e.currentTarget.reset();
-        
-        // for browser history section
-            // let searchPic = this.search.value
-            // let path = `${searchPic}`;
-            // this.props.history.push(path);
     };
 
     render() {
-        
         return (
             <form className="search-form" onSubmit={this.handleSearch}>
                 <input
