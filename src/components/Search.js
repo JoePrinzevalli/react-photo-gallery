@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function withNavigate(Component) {
-    return (props) => <Component {...props} navigate={useNavigate()} />;
+    return (props) => <Component {...props} location={useLocation()} navigate={useNavigate()} />;
   }
 
 class Search extends Component {
@@ -23,10 +23,11 @@ class Search extends Component {
         e.currentTarget.reset();
     };
 
-    // handleHistory = () => {
-    //     this.props.navigate(window.location.pathname)
-    //     this.props.search(window.location.pathname)
-    // }
+    componentDidUpdate(prevProps) {
+        if (prevProps.location.pathname !== this.props.location.pathname) {
+          this.props.search(this.props.location.pathname);
+        }
+      };
 
     render() {
         return (

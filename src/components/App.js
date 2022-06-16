@@ -38,12 +38,11 @@ class App extends Component  {
     
   };
 
-  
   render() {
    return (
     <BrowserRouter>
       <div className="container">
-        <Header search={this.performFetch(window.location.pathname)} query={this.state.query} />
+        <Header search={() => this.performFetch(window.location.pathname)} query={this.state.query} />
         <Routes>
           <Route path='/' element={<Home  search={this.performFetch} />} />
           <Route path='/:query' element={<PhotoList loading={this.state.loading} data={this.state.photos} /> } />
