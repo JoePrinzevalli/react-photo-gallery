@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function withNavigate(Component) {
     return (props) => <Component {...props} navigate={useNavigate()} />;
@@ -20,7 +20,10 @@ class Search extends Component {
         this.props.navigate(`/${this.query.value}`);
         e.preventDefault()
         this.props.search(this.query.value)
+        
+        this.history.push(`/${this.query.value}`);
         e.currentTarget.reset();
+
     };
 
     render() {
