@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Routes} from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import axios from 'axios';
 
 
@@ -35,6 +35,7 @@ class App extends Component  {
 
   componentDidMount() {
     this.performFetch(window.location.pathname)
+    
   };
 
   

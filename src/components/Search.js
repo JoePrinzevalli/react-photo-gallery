@@ -15,16 +15,18 @@ class Search extends Component {
     onSearchChange = e => {
         this.setState({ searchText: e.target.value });
     }
-    
+
     handleSearch = e => {
         this.props.navigate(`/${this.query.value}`);
         e.preventDefault()
         this.props.search(this.query.value)
-        
-        this.history.push(`/${this.query.value}`);
         e.currentTarget.reset();
-
     };
+
+    // handleHistory = () => {
+    //     this.props.navigate(window.location.pathname)
+    //     this.props.search(window.location.pathname)
+    // }
 
     render() {
         return (
